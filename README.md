@@ -1,41 +1,35 @@
-# dio-live-cloudfront
-Repositório de código para o Live Coding do dia 24/09/2021.
+# Criando um App para Câmbio de Moedas em Swift
 
-### Serviços utilizados
- - Cloudfront
- - S3
- 
-### Configurações iniciais
+**Objetivo**: Criar um App em iOS de conversão de moedas/câmbio, passando por todo o processo de desenvolvimento usando o Swift. 
 
-#### Criando o bucket no S3
-- AWS Console -> S3 -> Create bucket -> Bucket name [nome único] -> AWS Region [padrão] -> Manter configurações de acesso padrão -> Create bucket
-- Acessar o bucket criado -> Upload -> Add files -> Arquivos disponíveis na pasta ```/src``` do repositório -> Upload 
 
-#### COnfigurando o CloudFront
+## Pré-requisitos
 
-- CloudFront Console -> Create distribution -> Origin domain [seu bucket S3 criado anteriormente] -> Yes use OAI (bucket can restrict access to only CloudFront) -> Create new OAI -> Bucket Policy [Yes, update the bucket policy]
-- Viewer protocol policy [Redirect HTTP to HTTPS]
-- Cache key and origin requests -> Cache policy and origin request policy (recommended)
-- Settings [Use all edge locations (best performance)]
-- Create distribution
+Antes de começar, verifique se você atendeu aos seguintes requisitos:
+* Você precisa de uma versão igual ou superior a 10.2 do [Xcode](https://developer.apple.com/xcode/). 
+* Criar uma conta gratuita [exchangeratesapi](https://developer.apple.com/xcode/).
+* Obter a API KEY em [exchangeratesapi](https://developer.apple.com/xcode/).
 
-#### Verificando permissões no S3
+## O que vamos aprender?
 
-- S3 Console -> bucket criado anteriormente -> Permissions -> verificar as permissões atualizadas nas políticas de acesso
+* Configurar o projeto para usar storyboard
+* Criar modelo usando `struct` e `decodable` 
+* Fazer requisição para uma API REST
+* Criar ViewController
+* Criar uma `TableView` utilizando storyboard
+* Fazer listagem das moedas e seus valores
 
-#### Acessando pelo browser
+## Ajustes, melhorias e desafios
+Adicionalmente, como desafio, o que acha de desbravar as possibilidades abaixo? (sugestão)
 
-https://<meu_dominio>.cloudfront.net/index.html
+- [ ] Criar a listagem utilizando SwiftUI 
+- [ ] Mudar a arquitetura de MVC para MVVM
+- [ ] Adicionar testes unitários
 
-#### Configurando a página ```index.html``` como default
+## Links úteis
 
-- CloudFront Console -> selecionar a distribuição criada -> General -> Settings -> Edit
-- Default root object - optional [index.html]
+* [100 dias com swift](https://www.hackingwithswift.com/100)
+* [100 dias com SwiftUI](https://www.hackingwithswift.com/100/swiftui)
+* [Refatorando de MVC para MVVM](https://www.raywenderlich.com/6733535-ios-mvvm-tutorial-refactoring-from-mvc)
+* [Testes unitários em swift](https://www.swiftbysundell.com/basics/unit-testing/)
 
-### Configurações Extras
-
-#### Configurando páginas de erro
-
-- CloudFront Console -> selecionar a distribuição criada -> Error pages -> Create custom error response
-- HTTP error code [403]
-- Customize error response -> Response page path [/404.html] -> HTTP Response code [404 Not found]
